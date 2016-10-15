@@ -1507,13 +1507,42 @@ namespace Microsoft.EntityFrameworkCore.Specification.Tests
             }
         }
 
-        //[ConditionalFact]
         public virtual void Non_unicode_string_literals_is_used_for_non_unicode_column_with_concat()
         {
             using (var context = CreateContext())
             {
                 var query = from c in context.Cities
                             where (c.Location + "Added").Contains("Add")
+                            select c;
+
+                var result = query.ToList();
+
+                Assert.Equal(4, result.Count);
+            }
+        }
+
+        //[ConditionalFact] //TODO: issue#4978
+        public virtual void Non_unicode_string_literals_is_used_for_non_unicode_column_with_concat_contains()
+        {
+            using (var context = CreateContext())
+            {
+                var query = from c in context.Cities
+                            where (c.Location + "Added").Contains("Add")
+                            select c;
+
+                var result = query.ToList();
+
+                Assert.Equal(4, result.Count);
+            }
+        }
+
+        //[ConditionalFact] //TODO: issue#4978
+        public virtual void Non_unicode_string_literals_is_used_for_non_unicode_column_with_concat_starts_with()
+        {
+            using (var context = CreateContext())
+            {
+                var query = from c in context.Cities
+                            where (c.Location + "Added").StartsWith("Add")
                             select c;
 
                 var result = query.ToList();

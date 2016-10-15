@@ -1389,10 +1389,11 @@ WHERE CHARINDEX(N'Jacinto', [c].[Location]) > 0",
         {
             base.Non_unicode_string_literals_is_used_for_non_unicode_column_with_concat();
 
+            // Sql could be improved see issue#4978
             Assert.Equal(
                 @"SELECT [c].[Name], [c].[Location]
 FROM [City] AS [c]
-WHERE [c].[Location] + 'Added' LIKE ('%' + 'Add') + '%'",
+WHERE CHARINDEX(N'Add', [c].[Location] + 'Added') > 0",
                 Sql);
         }
 

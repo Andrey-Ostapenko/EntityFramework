@@ -3427,7 +3427,7 @@ namespace Microsoft.EntityFrameworkCore.Specification.Tests
                     });
         }
 
-        //[ConditionalFact]
+        //[ConditionalFact] // TODO: Find issue
         //public virtual void GroupBy_anonymous_subquery()
         //{
         //    AssertQuery<Customer>(cs =>
@@ -4079,9 +4079,8 @@ namespace Microsoft.EntityFrameworkCore.Specification.Tests
             AssertQuery<Order>(os => os.OrderBy(o => o.OrderID).Where(o => ClientEvalPredicate(o)).Count(o => o.CustomerID != "ALFKI"));
         }
 
-        //TODO: The function translated to SQL and due to being integer represent the column number
-        //[ConditionalFact]
-        public virtual void OrderBy_client_Take()
+        [ConditionalFact]
+        public virtual void OrderBy_stateless_function_gets_funcletized()
         {
             AssertQuery<Employee>(es => es.OrderBy(o => ClientEvalSelectorStateless()).Take(10), entryCount: 9);
         }
@@ -4888,7 +4887,7 @@ namespace Microsoft.EntityFrameworkCore.Specification.Tests
             }
         }
 
-        //[ConditionalFact]
+        [ConditionalFact]
         public virtual void Convert_ToString()
         {
             var convertMethods = new List<Expression<Func<Order, bool>>>

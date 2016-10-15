@@ -1958,8 +1958,7 @@ namespace Microsoft.EntityFrameworkCore.Specification.Tests
             }
         }
 
-        // TODO: broken currently
-        ////[ConditionalFact]
+        [ConditionalFact]
         public virtual void SelectMany_navigation_comparison2()
         {
             List<KeyValuePair<int, int>> expected;
@@ -1993,8 +1992,7 @@ namespace Microsoft.EntityFrameworkCore.Specification.Tests
             }
         }
 
-        // TODO: broken currently
-        ////[ConditionalFact]
+        [ConditionalFact]
         public virtual void SelectMany_navigation_comparison3()
         {
             List<KeyValuePair<int, int>> expected;
@@ -2028,8 +2026,7 @@ namespace Microsoft.EntityFrameworkCore.Specification.Tests
             }
         }
 
-        // broken
-        ////[ConditionalFact]
+        [ConditionalFact]
         public virtual void Where_complex_predicate_with_with_nav_prop_and_OrElse1()
         {
             List<KeyValuePair<int?, int?>> expected;
@@ -3535,8 +3532,8 @@ namespace Microsoft.EntityFrameworkCore.Specification.Tests
             }
         }
 
-        // issue #6618
-        ////[ConditionalFact]
+
+        //[ConditionalFact] // TODO: issue#6618
         public virtual void Optional_navigation_take_optional_navigation()
         {
             List<string> expected;
